@@ -1,24 +1,67 @@
 # README
+## usersテーブル
+| Column             | Type    | Option                    |
+| ------------------ | ------- | ------------------------- |
+| email              | string  | unique: true, null: false |
+| encrypted_password | string  | null: false               |
+| nickname           | string  | null: false               |
+| last_name          | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| first_name         | string  | null: false               |
+| first_name_kana    | string  | null: false               |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Association
+- has_many : books
+- has_many : comments
+- has_many : orders
 
-Things you may want to cover:
+## booksテーブル
+| Column        | Type       | Option            |
+| ------------- | ---------- | ----------------- |
+| book_title    | string     | null: false       |
+| book_image    | text       |                   |
+| book_learn    | text       | null: false       |
+| book_contents | string     | null: false       |
+| user          | references | foreign_key: true |
 
-* Ruby version
+### Association
+- has_one    :wrap_up
+- has_many   :comments
+- belongs_to :user
 
-* System dependencies
+## wrap_upテーブル
+| Column      | Type       | Option            |
+| ----------- | ---------- | ----------------- |
+| write_down  | text       | null: false       |
+| wrap_up     | text       | null: false       |
+| impressions | text       | null: false       |
+| action_plan | text       | null: false       |
+| price       | integer    | null: false       |
+| book        | references | foreign_key: true |
 
-* Configuration
+### Association
+- has_one    :orders
+- belongs_to :book
 
-* Database creation
+## commentsテーブル
+| Column | Type       | Option            |
+| ------ | ---------- | ----------------- |
+| text   | text       | null: false       |
+| user   | references | foreign_key: true |
+| book   | references | foreign_key: true |
 
-* Database initialization
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- belongs_to :book
 
-* Services (job queues, cache servers, search engines, etc.)
+## ordersテーブル
+| Column  | Type       | Option            |
+| ------- | ---------- | ----------------- |
+| user    | references | foreign_key: true |
+| wrap_up | references | foreign_key: true |
 
-* Deployment instructions
 
-* ...
+### Association
+- belongs_to :user
+- belongs_to :wrap_up
