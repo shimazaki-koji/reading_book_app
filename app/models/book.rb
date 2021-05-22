@@ -1,8 +1,8 @@
 class Book < ApplicationRecord
   #has_many :wrap_up
   #has_many :comments
-  has_one_attached :image
   belongs_to :user
+  has_one_attached :image
 
   #extend ActiveHash::Associations::ActiveRecordExtensions
     #belongs_to_active_hash :contents
@@ -13,4 +13,7 @@ class Book < ApplicationRecord
     validates :contents
   end
 
+  def was_attached?
+    image.was_attached?
+  end
 end

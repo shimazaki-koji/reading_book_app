@@ -12,9 +12,14 @@ class BooksController < ApplicationController
     Book.create(book_params)
   end
 
+  def destroy
+    book = Book.finf¥d(params[:id])
+    book.destroy
+  end
+
   private
   def book_params
-    params.require(:book).permit(:title, :image, :learn, :contents)
+    params.require(:book).permit(:title, :learn, :contents)
   end
 
 end
