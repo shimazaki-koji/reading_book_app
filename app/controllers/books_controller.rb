@@ -13,10 +13,19 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    book = Book.finf¥d(params[:id])
+    book = Book.find(params[:id])
     book.destroy
   end
 
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    book = Book.find(params[:id])
+    book.update(book_params)
+  end
+  
   private
   def book_params
     params.require(:book).permit(:title, :learn, :contents)

@@ -1,0 +1,12 @@
+<div class="contents row">
+  <div class="container">
+    <h3>編集する</h3>
+    <%= form_with(model: @book, local: true) do |form| %>
+      <%= form.text_field :title, placeholder: "本のタイトル(Booktitle)" %>
+      <%#= form.text_field :image, placeholder: "Image Url" %>
+      <%= form.text_area :learn, placeholder: "本から学びたいこと(learn)", rows: "10" %>
+      <%= form.text_area :contents, placeholder: "本の種別(contents)", rows: "10" %>
+      <%= form.submit "SEND" %>
+    <% end %>
+  </div>
+</div>
