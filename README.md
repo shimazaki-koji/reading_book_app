@@ -16,16 +16,16 @@
 - has_many : orders
 
 ## booksテーブル
-| Column        | Type       | Option            |
-| ------------- | ---------- | ----------------- |
-| book_title    | string     | null: false       |
-| book_image    | text       |                   |
-| book_learn    | text       | null: false       |
-| book_contents | string     | null: false       |
-| user          | references | foreign_key: true |
+| Column   | Type       | Option            |
+| -------- | ---------- | ----------------- |
+| title    | string     | null: false       |
+| image    | text       |                   |
+| learn    | text       | null: false       |
+| contents | string     | null: false       |
+| user     | references | foreign_key: true |
 
 ### Association
-- has_one    :wrap_up
+- has_many    :wrap_up
 - has_many   :comments
 - belongs_to :user
 
