@@ -17,6 +17,9 @@
       </div>
       <p><%= book.text %></p>
       <span class="name">
+        <a href="/users/<%= book.user.id %>">
+          <span>投稿者</span><%= book.user.nickname %>
+        </a>
         <%= book.name %>
       </span>
     </div>
