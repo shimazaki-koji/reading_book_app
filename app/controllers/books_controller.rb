@@ -1,6 +1,5 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:edit, :show]
-  before_action :set_book2, only: [:destroy, :update]
   before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -12,10 +11,12 @@ class BooksController < ApplicationController
   end
 
   def create
+    binding.pry
     Book.create(book_params)
   end
 
   def destroy
+    book = Book.find(params[:id])
     book.destroy
   end
 
@@ -23,6 +24,7 @@ class BooksController < ApplicationController
   end
 
   def update
+    book = Book.find(params[:id])
     book.update(book_params)
   end
 
@@ -37,10 +39,6 @@ class BooksController < ApplicationController
 
   def set_book
     @book = Book.find(params[:id])
-  end
-
-  def set_book2
-    book = Book.find(params[:id])
   end
 
   def move_to_index
