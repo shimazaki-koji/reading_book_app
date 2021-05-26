@@ -14,7 +14,15 @@ class Book < ApplicationRecord
     validates :contents
   end
 
-  def was_attached?
-    image.was_attached?
+  def self.search(search)
+    if search != ""
+      Book.where('text LIKE(?)', "%#{search}%")
+    else
+      Book.all
+    end
   end
+  
+  #def was_attached?
+    #image.was_attached?
+  #end
 end
