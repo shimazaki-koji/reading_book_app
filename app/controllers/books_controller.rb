@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:edit, :show]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :seach]
 
   def index
     @books = Book.includes(:user).order("created_at DESC")
@@ -11,7 +11,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    binding.pry
+    #binding.pry
     Book.create(book_params)
   end
 
@@ -29,8 +29,14 @@ class BooksController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @bok.comnets.inclubes(:user)
   end
 
+  def search
+    @books = Book.search(params[:keyword])
+  end
+  
   private
 
   def book_params
