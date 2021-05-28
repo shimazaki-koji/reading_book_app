@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_05_26_133129) do
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "learn", null: false
-    t.string "contents", null: false
+    t.string "content", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
