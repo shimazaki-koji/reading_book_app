@@ -1,6 +1,5 @@
 class Book < ApplicationRecord
   #has_many :wrap_up
-  #has_many :comments
   belongs_to :user
   has_one_attached :image
   has_many :comments
@@ -11,7 +10,7 @@ class Book < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :learn
-    validates :contents
+    validates :content
   end
 
   def self.search(search)
@@ -22,7 +21,7 @@ class Book < ApplicationRecord
     end
   end
   
-  #def was_attached?
-    #image.was_attached?
-  #end
+  def was_attached?
+    image.was_attached?
+  end
 end
