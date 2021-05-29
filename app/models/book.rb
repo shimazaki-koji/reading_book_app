@@ -10,7 +10,7 @@ class Book < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :learn
-    validates :content
+    validates :genre
   end
 
   def self.search(search)
