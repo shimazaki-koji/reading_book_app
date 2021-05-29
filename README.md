@@ -17,7 +17,7 @@
 | title    | string     | null: false       |
 | image    | text       |                   |
 | learn    | text       | null: false       |
-| contents | string     | null: false       |
+| genre    | string     | null: false       |
 | user     | references | foreign_key: true |
 
 ### Association
