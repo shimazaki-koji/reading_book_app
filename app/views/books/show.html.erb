@@ -1,32 +1,56 @@
-<div class="contents row">
-  <div class="content_post" style="background-image: url(<%= @book.image %>);">
-    <% if user_signed_in? && current_user.id == @book.user_id %>
-      <div class="more">
-        <span><%= image_tag book.image, class: 'book-image' if message.image.attached? %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '編集', edit_tweet_path(@tweet.id), method: :get %>
-          </li>
-          <li>
-            <%= link_to '削除', book_path(@tweet.id), method: :delete %>
-          </li>
+<main class="main">
+  <div class="inner">
+    <div class="book__wrapper">
+      <p class="book__hedding">
+        <%= @book.title%>
+      </p>
+      <%= link_to "by#{@book.user.nickname} ", user_path(@book.user.id), class: :prototype__user %>
+      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <% if user_signed_in? && current_user.id == @book.user_id%>
+        <div class="book__manage">
+          <%= link_to "編集する", edit_book_path(@book.id), class: :prototype__btn %>
+          <%= link_to "削除する", book_path(@book.id), method: :delete, class: :prototype__btn %>
+        </div>
+      <% end %>
+      <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
+      <div class="book__image">
+        <%= image_tag @book.image %>
+      </div>
+      <div class="book__body">
+        <div class="book__detail">
+          <p class="detail__title">本から学びたいこと</p>
+          <p class="detail__message">
+            <%= @book.learn %>
+          </p>
+        </div>
+      </div>
+      <div class="book__comments">
+        <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
+        <% if user_signed_in? %>
+          <%= form_with model: [@book, @comment], local: true do |f|%>
+            <div class="field">
+              <%= f.label :text, "コメント" %><br />
+              <%= f.text_field :text %>
+            </div>
+            <div class="actions">
+              <%= f.submit "送信する", class: :form__btn %>
+            </div>
+          <% end %>
+        <% end %>
+        <%# // ログインしているユーザーには上記を表示する %>
+        <ul class="comments_lists">
+          <%# 投稿に紐づくコメントを一覧する処理を記述する %>
+          <% @comments.each do |comment| %>
+            <li class="comments_list">
+              <p>
+                <%= comment.text %>
+                <%= link_to @book.user.name, user_path(comment.user), class: :comment_user %>
+              </p>
+            </li>
+          <% end %>
+          <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
         </ul>
       </div>
-    <% end %>
-    <p><%= @book.text %></p>
-    <span class="name">
-      <a href="/users/<%= @book.uesr.nickname %>">
-      </a>
-    </span>
+    </div>
   </div>
-  <div class="container">
-    <% if user_signed_in? %>
-      <%= form_with(model: [@book, @comment], local: true) do |form| %>
-        <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
-        <%= form.submit "SEND" %>
-      <% end %>
-    <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
-    <% end %>
-  </div>
-</div>
+</main>

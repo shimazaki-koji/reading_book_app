@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   root to: 'books#index'
   resources :books do
     resources :comments, only: :create
+    resources :contents, except: :index
     collection do
       get 'search'
     end
   end
-  resources :users, only: :show
+  resources :users, only: [:show, :create]
 end

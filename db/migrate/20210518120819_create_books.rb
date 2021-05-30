@@ -2,6 +2,7 @@ class CreateBooks < ActiveRecord::Migration[6.0]
   def change
     create_table :books do |t|
       t.string :title, null: false, defalut: ""
+      t.string :writer, null: false, defalut: ""
       t.text :learn, null: false, defalut: ""
       t.string :genre, null: false, defalut: ""
       t.references :user, foreign_key: true

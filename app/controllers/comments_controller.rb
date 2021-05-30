@@ -1,7 +1,14 @@
 class CommentsController < ApplicationController
+
   def create
-    commnet = Comment.create(comment_params)
-    redirect_to "/books/#{commnet.book.id}"
+    @commnet = Comment.new(comment_params)
+    if @comment.save
+      redirect_to book_path(@comment.book)
+    else
+      @prototype = @comment.book
+      @comments = @book.comments
+      render "books/show"
+    end
   end
 
   private
