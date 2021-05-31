@@ -1,0 +1,25 @@
+<%= form_with(model:@content, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :title, "本のタイトル" %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :write_down, "本の書き抜き" %><br />
+    <%= f.text_field :write_down %>
+  </div>
+
+  <div class="field">
+    <%= f.label :wrap_up, "要約" %><br />
+    <%= f.text_area :wrap_up, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :action_plan, "アクションプラン" %><br />
+    <%= f.text_area :action_plan, class: :form__text %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存する", class: :form__btn  %>
+  </div>
+<% end %>

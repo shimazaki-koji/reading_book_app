@@ -20,7 +20,7 @@
 | user     | references | foreign_key: true |
 
 ### Association
-- has_many   :contents
+- has_many :contents
 - belongs_to :user
 
 ## contentsテーブル
@@ -33,7 +33,7 @@
 
 ### Association
 - belongs_to :book
-- has_many :comment
+- has_many :comments
 
 ## commentsテーブル
 | Column | Type       | Option            |

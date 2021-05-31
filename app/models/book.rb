@@ -1,11 +1,7 @@
 class Book < ApplicationRecord
-  #has_many :wrap_up
   belongs_to :user
+  has_many :contents
   has_one_attached :image
-  has_many :comments
-
-  #extend ActiveHash::Associations::ActiveRecordExtensions
-    #belongs_to_active_hash :contents
 
   with_options presence: true do
     validates :title
