@@ -1,16 +1,15 @@
 <main class="main">
   <div class="inner">
-    <%# ログインしているときは以下を表示する %>
-    <% if user_signed_in? %>
+    <%# ユーザーがログインしていてかつ投稿者と同じ場合は以下を表示する %>
+    <% if user_signed_in? && current_user.id %>
       <div class="greeting">
-        <%= "こんにちは、" %>
-        <%= link_to "#{current_user.nickname}さん", user_path(current_user.id), class: :greeting__link%>
+        <%= link_to "内容の新規投稿", new_book_content_path, class: :greeting__link%>
       </div>
     <% end %>
     <%# // ログインしているときは上記を表示する %>
     <div class="card__wrapper">
       <%# 投稿機能実装後、部分テンプレートで本の投稿一覧を表示する %>
-      <%= render partial: 'content', collection: @contents %>
+      <%= render partial: 'content', collection: @content %>
     </div>
   </div>
 </main>

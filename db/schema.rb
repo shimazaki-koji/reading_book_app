@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_05_30_023719) do
   end
 
   create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "chapter", null: false
     t.text "write_down", null: false
     t.text "wrap_up", null: false
     t.text "action_plan"

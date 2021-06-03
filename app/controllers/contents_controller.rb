@@ -1,7 +1,7 @@
 class ContentsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :destroy, :index]
-  before_action :set_content, only: [:edit, :show]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :set_content, only: [:show, :edit]
+  before_action :move_to_index, only: [:edit]
 
   def index
     @contents = Content.includes(:user).order("created_at DESC")
@@ -12,12 +12,18 @@ class ContentsController < ApplicationController
   end
 
   def create
-    @content = Content.new(content_params)
+    content = Content.create(content_params)
+    if content.save
+      redirect_to action: :index
+    else
+      render :new
+    end
   end
 
   def destroy
     content = Content.find(params[:id])
     content.destroy
+    redirect_to action: :index
   end
 
   def edit
@@ -26,26 +32,30 @@ class ContentsController < ApplicationController
   def update
     content = Content.find(params[:id])
     content.update(content_params)
+    if content.update(content_params)
+      redirect_to content_path
+    else
+      @content = Content.find(params[:id])
+      render :edit
+    end
   end
 
   def show
-    #@comment = Comment.new
-    #@comments = @content.comments.includes(:user)
   end
 
   private
 
   def content_params
-    params.require(:content).permit(:write_down, :wrap_up, :action_plan).merge(user_id: current_user.id, book_id: params[:book_id])
+    params.permit(:chapter, :write_down, :wrap_up, :action_plan).merge(book_id: params[:book_id])
   end
 
   def set_content
-    @content = Content.find(params[:book_id])
+    @content = Content.find(params[:id])
   end
 
   def move_to_index
-    if current_user == @book.user
-      redirect_to root_path
+    unless current_user.id == @content.user.id
+      redirect_to action: :index
     end
   end
 end

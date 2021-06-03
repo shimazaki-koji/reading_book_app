@@ -1,7 +1,5 @@
 <div class="card">
   <div class="card__body">
-    <%= link_to book.title, book_path(book.id), class: :card__title %>
-    <%= link_to book.writer, book_path(book.id), class: :card__title %>
-    <%= link_to "by #{book.user.nickname}",  user_path(book.user), class: :card__user %>
+    <%= link_to content.chapter, book_contents_path, class: :card__title %>
   </div>
 </div>

@@ -3,8 +3,6 @@
   <div class="card__body">
     <%= link_to book.title, book_path(book.id), class: :card__title %>
     <%= link_to book.writer, book_path(book.id), class: :card__title %>
-  <%# unless user_signed_in? && current_user.id == @book.user_id%>
     <%= link_to "by #{book.user.nickname}",  user_path(book.user), class: :card__user %>
-  <%# end %>
   </div>
 </div>

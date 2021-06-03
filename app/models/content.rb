@@ -2,6 +2,9 @@ class Content < ApplicationRecord
   belongs_to :book
   has_many :comments
 
-  validates :write_down, presence: true
-
+  with_options presence: true do
+    validates :chapter
+    validates :write_down
+  end
+  
 end

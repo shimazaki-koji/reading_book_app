@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to book_path(@comment.book)
     else
-      @prototype = @comment.book
+      @book = @comment.book
       @comments = @book.comments
       render "books/show"
     end

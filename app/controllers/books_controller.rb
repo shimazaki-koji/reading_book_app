@@ -12,13 +12,18 @@ class BooksController < ApplicationController
   end
 
   def create
-    #binding.pry
     book = Book.create(book_params)
+    if book.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def destroy
     book = Book.find(params[:id])
     book.destroy
+    redirect_to root_path
   end
 
   def edit
@@ -26,10 +31,16 @@ class BooksController < ApplicationController
 
   def update
     book = Book.find(params[:id])
-    book.update(book_params)
+    if book.update(book_params)
+      redirect_to book_path
+    else
+      render :edit
+    end
   end
 
   def show
+    #@comment = Comment.new
+    #@comment = @book.comments.includes(:user)
   end
 
   def search

@@ -26,6 +26,7 @@
 ## contentsテーブル
 | Column      | Type       | Option            |
 | ----------- | ---------- | ----------------- |
+| chapter     | string     | null: false       |
 | write_down  | text       | null: false       |
 | wrap_up     | text       | null: false       |
 | action_plan | text       | null: false       |

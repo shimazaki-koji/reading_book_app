@@ -1,12 +1,12 @@
-<%= form_with(model:@content, local: true) do |f| %>
+<%= form_with url:book_contents_path, method: :post, local: true do |f| %>
   <div class="field">
-    <%= f.label :title, "本のタイトル" %><br />
-    <%= f.text_field :title %>
+    <%= f.label :chapter, "題目" %><br />
+    <%= f.text_field :chapter %>
   </div>
 
   <div class="field">
     <%= f.label :write_down, "本の書き抜き" %><br />
-    <%= f.text_field :write_down %>
+    <%= f.text_area :write_down , class: :form__text %>
   </div>
 
   <div class="field">
