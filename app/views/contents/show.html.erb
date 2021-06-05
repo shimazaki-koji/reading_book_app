@@ -1,9 +1,6 @@
 <main class="main">
   <div class="inner">
     <div class="book__wrapper">
-      <%#p class="book__hedding">
-        <%= book.title%>
-      </p>
       <div class="book__body">
         <div class="book__detail">
           <p class="detail__message">書き抜き</p>
@@ -25,10 +22,10 @@
         </div>
       </div>
       <%# 本の投稿者とログインしているユーザーが同じであれば以下を表示する %>
-      <% if user_signed_in? && current_user.id == @book.user_id%>
+      <% if user_signed_in? && current_user.id == @content.user_id%>
         <div class="book__manage">
-          <%= link_to "編集する", edit_content_path(@content.id), class: :book__btn %>
-          <%= link_to "削除する", content_path(@content.id), method: :delete, class: :book__btn %>
+          <%= link_to "編集する", edit_book_content_path(@content.id), class: :book__btn %>
+          <%= link_to "削除する", book_content_path(@content.id), method: :delete, class: :book__btn %>
         </div>
       <% end %>
       <%# // 本の投稿者とログインしているユーザーが同じであれば上記を表示する %>

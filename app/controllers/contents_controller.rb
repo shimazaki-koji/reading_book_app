@@ -4,7 +4,7 @@ class ContentsController < ApplicationController
   before_action :move_to_index, only: [:edit]
 
   def index
-    @contents = Content.includes(:user).order("created_at DESC")
+    @contents = Content.includes(:book).order("created_at DESC")
   end
 
   def new

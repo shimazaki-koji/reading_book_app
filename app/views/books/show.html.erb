@@ -24,9 +24,11 @@
         <p class="detail__message">本から学びたいこと</p>
           <%= @book.learn %>
         </p>
+      <% if user_signed_in? && current_user.id %>
         <div class="book__manage">
           <%= link_to "内容", book_contents_path(@book.id), class: :book__btn %>
         </div>
+      <% end %>
       </div>
       <%= link_to "by#{@book.user.nickname} ", user_path(@book.user.id), class: :book__user %>
     </div>

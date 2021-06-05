@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :user
-  has_many :contents
+  has_many :contents, dependent: :destroy
   has_one_attached :image
 
   with_options presence: true do
