@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card__body">
-    <%#=link_to content.chapter, book_content_path(@content.id) %>
-    <%=content.chapter %>
+    <%=link_to content.chapter, book_content_path(content.book_id, content.id) %>
+    <%#=content.chapter %>
   </div>
 </div>
