@@ -1,17 +1,18 @@
 <main class="main">
-  <div class="inner">
-    <%# ユーザーがログインしていてかつ投稿者と同じ場合は以下を表示する %>
-    <% if user_signed_in? && current_user.id == @book.user.id %>
-      <div class="greeting">
-        <%= link_to "内容の新規投稿", new_book_content_path, class: :greeting__link%>
-      <% else %>
-        <%= "内容の投稿" %>
+  <div class="book__inner">
+    <%= "内容一覧" %>
+    <div class="content__inner">
+      <%# ユーザーがログインしていてかつ投稿者と同じ場合は以下を表示する %>
+      <% if user_signed_in? && current_user.id == @book.user.id %>
+        <div class="greeting">
+          <%= link_to "内容の新規投稿", new_book_content_path, class: :greeting__link%>
+        </div>
+      <% end %>
+      <%# // ログインしているときは上記を表示する %>
+      <div class="content__wrapper">
+        <%# 投稿機能実装後、部分テンプレートで内容の一覧を表示する %>
+        <%= render partial: 'content', collection: @contents %>
       </div>
-    <% end %>
-    <%# // ログインしているときは上記を表示する %>
-    <div class="card__wrapper">
-      <%# 投稿機能実装後、部分テンプレートで内容の一覧を表示する %>
-      <%= render partial: 'content', collection: @contents %>
     </div>
   </div>
 </main>

@@ -43,8 +43,10 @@ class ContentsController < ApplicationController
     end
   end
 
-  def show
-  end
+  #def show
+    #@comment = Comment.new
+    #@comments - @content.comments.includes(:comment)
+  #end
 
   private
 

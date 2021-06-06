@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     root to: 'contents#index'
   end
   resources :books do
-    resources :contents #do
-      #resources :comments, only: :create
-    #end
+    resources :contents do
+      resources :comments, only: :create
+    end
     collection do
       get 'search'
     end
