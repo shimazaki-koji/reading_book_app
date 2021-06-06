@@ -92,11 +92,13 @@ a {
 }
 
 .field{
-  margin: 10px 0;
+  margin: 10px 10px;
 }
 
 .actions{
+  margin-top: 10px;
   margin-bottom: 40px;
+  margin-left: 10px;
 }
 
 .form__btn{
@@ -120,9 +122,6 @@ a {
 
 /* メイン */
 
-.greeting{
-  margin-bottom: 20px;
-}
 .greeting__link{
   text-decoration: underline;
 }
@@ -178,7 +177,7 @@ a {
   text-decoration: underline;
 }
 .book__image{
-  width: 40%;
+  width: 30%;
   margin: 0 auto;
   padding: 16px 0;
 }
@@ -212,6 +211,12 @@ a {
 .book__btn:hover{
   color: #fff;
   background: #999;
+}
+
+.contents__detail{
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .book__comments{

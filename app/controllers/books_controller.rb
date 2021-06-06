@@ -39,8 +39,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    #@comment = Comment.new
-    #@comment = @book.comments.includes(:user)
   end
 
   def search

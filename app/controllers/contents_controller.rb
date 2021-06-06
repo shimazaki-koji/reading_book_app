@@ -4,7 +4,9 @@ class ContentsController < ApplicationController
   before_action :move_to_index, only: [:edit]
 
   def index
-    @contents = Content.includes(:book).order("created_at DESC")
+    @content = Content.new
+    @book = Book.find(params[:book_id])
+    @contents = @book.contents.includes(:book).order("created_at DESC")
   end
 
   def new
@@ -12,11 +14,12 @@ class ContentsController < ApplicationController
   end
 
   def create
-    content = Content.create(content_params)
-    if content.save
-      redirect_to action: :index
+    @book = Book.find(params[:book_id])
+    contents = @book.contents.new(content_params)
+    if contents.save
+      redirect_to book_contents_path(@book)
     else
-      render :new
+      render :index
     end
   end
 
@@ -54,7 +57,7 @@ class ContentsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user.id == @content.user.id
+    unless current_user.id == @content.id
       redirect_to action: :index
     end
   end

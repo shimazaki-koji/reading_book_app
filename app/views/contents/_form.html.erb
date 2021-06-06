@@ -1,7 +1,7 @@
 <%= form_with url:book_contents_path, method: :post, local: true do |f| %>
   <div class="field">
     <%= f.label :chapter, "題目" %><br />
-    <%= f.text_field :chapter %>
+    <%= f.text_field :chapter ,class: :form__text%>
   </div>
 
   <div class="field">
