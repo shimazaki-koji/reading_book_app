@@ -1,7 +1,30 @@
-<%= form_with(model: book, local: true) do |form| %>
-  <%= form.text_field :title, placeholder: "本のタイトル(Booktitle)" %>
-  <%= form.text_field :image, placeholder: "Image" %>
-  <%= form.text_area :text, placeholder: "本から学びたいこと(learn)", rows: "10" %>
-  <%= form.text_area :text, placeholder: "本の種別(content)", rows: "10" %>
-  <%= form.submit "SEND" %>
+<%= form_with model: @book, local: true do |f| %>
+  <div class="field">
+    <%= f.label :title, "本のタイトル" %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :writer, "本の著者" %><br />
+    <%= f.text_field :writer %>
+  </div>
+
+  <div class="field">
+    <%= f.label :learn, "本から学びたいこと" %><br />
+    <%= f.text_area :learn, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :genre, "本の種類" %><br />
+    <%= f.text_area :genre, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "本の画像" %><br />
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存する", class: :form__btn  %>
+  </div>
 <% end %>

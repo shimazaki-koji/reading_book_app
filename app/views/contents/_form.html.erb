@@ -1,0 +1,25 @@
+<%= form_with url:book_contents_path, method: :post, local: true do |f| %>
+  <div class="field">
+    <%= f.label :chapter, "題目" %><br />
+    <%= f.text_field :chapter ,class: :form__text%>
+  </div>
+
+  <div class="field">
+    <%= f.label :write_down, "本の書き抜き" %><br />
+    <%= f.text_area :write_down , class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :wrap_up, "要約" %><br />
+    <%= f.text_area :wrap_up, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :action_plan, "コメント・アクションプラン" %><br />
+    <%= f.text_area :action_plan, class: :form__text %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存する", class: :form__btn  %>
+  </div>
+<% end %>

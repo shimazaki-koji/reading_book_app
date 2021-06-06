@@ -1,32 +1,36 @@
-<div class="contents row">
-  <div class="content_post" style="background-image: url(<%= @book.image %>);">
-    <% if user_signed_in? && current_user.id == @book.user_id %>
-      <div class="more">
-        <span><%= image_tag book.image, class: 'book-image' if message.image.attached? %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '編集', edit_tweet_path(@tweet.id), method: :get %>
-          </li>
-          <li>
-            <%= link_to '削除', book_path(@tweet.id), method: :delete %>
-          </li>
-        </ul>
+<main class="main">
+  <div class="inner">
+    <div class="book__wrapper">
+      <p class="book__hedding">
+        <%= @book.title%>
+      </p>
+      <div class="book__body">
+        <div class="book__detail">
+          <p class="detail__message">著者</p>
+            <%= @book.writer %>
+          </p>
+        </div>
       </div>
-    <% end %>
-    <p><%= @book.text %></p>
-    <span class="name">
-      <a href="/users/<%= @book.uesr.nickname %>">
-      </a>
-    </span>
-  </div>
-  <div class="container">
-    <% if user_signed_in? %>
-      <%= form_with(model: [@book, @comment], local: true) do |form| %>
-        <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
-        <%= form.submit "SEND" %>
+      <%# 本の投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <% if user_signed_in? && current_user.id == @book.user_id%>
+        <div class="book__manage">
+          <%= link_to "編集する", edit_book_path(@book.id), class: :book__btn %>
+          <%= link_to "削除する", book_path(@book.id), method: :delete, class: :book__btn %>
+        </div>
       <% end %>
-    <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
-    <% end %>
+      <%# // 本の投稿者とログインしているユーザーが同じであれば上記を表示する %>
+      <div class="book__image">
+        <%= image_tag @book.image %>
+        <p class="detail__message">本から学びたいこと</p>
+          <%= @book.learn %>
+        </p>
+      <% if user_signed_in? && current_user.id %>
+        <div class="book__manage">
+          <%= link_to "内容", book_contents_path(@book.id), class: :book__btn %>
+        </div>
+      <% end %>
+      </div>
+      <%= link_to "by#{@book.user.nickname} ", user_path(@book.user.id), class: :book__user %>
+    </div>
   </div>
-</div>
+</main>
